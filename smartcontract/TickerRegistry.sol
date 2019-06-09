@@ -4,6 +4,7 @@
 
 pragma solidity ^0.4.21;
 
+// this smart contract is setting a token symbol - ticker
 /**
  * @title SafeMath
  * @dev Math operations with safety checks that throw on error
