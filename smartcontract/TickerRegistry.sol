@@ -55,6 +55,7 @@ library SafeMath {
  * @title Ownable
  * @dev The Ownable contract has an owner address, and provides basic authorization control
  * functions, this simplifies the implementation of "user permissions".
+ 이 함수는, 소유주 주소, function을 제어할 수 있는 권한, user permissions에 대해서 간소화 합니다.
  */
 contract Ownable {
   address public owner;
@@ -68,7 +69,7 @@ contract Ownable {
    * account.
    */
   function Ownable() public {
-    owner = msg.sender;
+    owner = msg.sender; //외부에서 지금 함수를 호출한 주소
   }
 
   /**
@@ -151,7 +152,7 @@ contract TickerRegistry is ITickerRegistry, Ownable, Util {
     using SafeMath for uint256;
     // constant variable to check the validity to use the symbol
     // For now it's value is 90 days;
-    uint256 public expiryLimit = 7 * 1 days;
+    uint256 public expiryLimit = 7 * 1 days; //만료기간 기본 7일 설정
 
     // SecuirtyToken Registry contract address
     address public strAddress;
@@ -166,7 +167,7 @@ contract TickerRegistry is ITickerRegistry, Ownable, Util {
     }
 
     // Storage of symbols correspond to their details.
-    mapping(string => SymbolDetails) registeredSymbols;
+    mapping(string => SymbolDetails) registeredSymbols; //string-SymbolDetails로 mapping
 
     // Emit after the symbol registration
     event LogRegisterTicker(address indexed _owner, string _symbol, string _name, bytes32 _swarmHash, uint256 _timestamp);
@@ -187,22 +188,22 @@ contract TickerRegistry is ITickerRegistry, Ownable, Util {
      * @param _swarmHash Off-chain details of the issuer and token
      */
     function registerTicker(address _owner, string _symbol, string _tokenName, bytes32 _swarmHash) public {
-        require(bytes(_symbol).length > 0 && bytes(_symbol).length <= 10);
+        require(bytes(_symbol).length > 0 && bytes(_symbol).length <= 10);//심볼 길이 제한
         string memory symbol = upper(_symbol);
-        require(expiryCheck(symbol));
+        require(expiryCheck(symbol));//심볼 만료 검사
         registeredSymbols[symbol] = SymbolDetails(_owner, now, _tokenName, _swarmHash, false);
-        emit LogRegisterTicker (_owner, symbol, _tokenName, _swarmHash, now);
+        emit LogRegisterTicker (_owner, symbol, _tokenName, _swarmHash, now);//해당 이벤트 발생시킴
     }
 
      /**
       * @dev Change the expiry time for the token symbol
       * @param _newExpiry new time period for token symbol expiry
       */
-    function changeExpiryLimit(uint256 _newExpiry) public onlyOwner {
+    function changeExpiryLimit(uint256 _newExpiry) public onlyOwner {//만료기한변경
         require(_newExpiry >= 1 days);
         uint256 _oldExpiry = expiryLimit;
         expiryLimit = _newExpiry;
-        emit LogChangeExpiryLimit(_oldExpiry, _newExpiry);
+        emit LogChangeExpiryLimit(_oldExpiry, _newExpiry);//만료기간 변경하도록 이벤트 발생
     }
 
     /**
