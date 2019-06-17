@@ -186,8 +186,9 @@ contract TickerRegistry is ITickerRegistry, Ownable, Util {
      * @param _tokenName Name of the token
      * @param _owner Address of the owner of the token
      * @param _swarmHash Off-chain details of the issuer and token
+     * @param _dividedpercentage company will send a divided
      */
-    function registerTicker(address _owner, string _symbol, string _tokenName, bytes32 _swarmHash) public {
+    function registerTicker(address _owner, string _symbol, string _tokenName, bytes32 _swarmHash, int dividedpercentage) public {
         require(bytes(_symbol).length > 0 && bytes(_symbol).length <= 10);//심볼 길이 제한
         string memory symbol = upper(_symbol);
         require(expiryCheck(symbol));//심볼 만료 검사
