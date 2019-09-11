@@ -1,0 +1,175 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta charset="euc-kr">
+    <link rel="stylesheet" type="text/css" href="static/css/info.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+   
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script>
+		function initialize() {
+
+			var Y_point			= 35.87110100714382;		// Y 좌표
+			var X_point			= 128.60169690333006;		// X 좌표
+
+			var zoomLevel		= 17;						// 첫 로딩시 보일 지도의 확대 레벨
+
+			var markerTitle		= "대구시청";				// 현재 위치 마커에 마우스를 올렸을때 나타나는 이름
+			var markerMaxWidth	= 300;						// 마커를 클릭했을때 나타나는 말풍선의 최대 크기
+
+			// 말풍선 내용
+			var contentString	= '<div id="content">' +
+			'<div id="siteNotice">' +
+			'</div>'+
+			'<h2 id="firstHeading" class="firstHeading">대구시청</h2>'+
+			'<div id="bodyContent">'+
+			'<p>대구광역시청(大邱廣域市廳, Daegu Metropolitan City Hall)은 대구광역시의 행정을 총괄하는 기관이다.<br />' +
+			'<a href="http://www.daegu.go.kr" target="_blank">http://www.daegu.go.kr</a></p>'+
+			'</div>'+
+			'</div>';
+
+			var myLatlng = new google.maps.LatLng(Y_point, X_point);
+			var mapOptions = {
+								zoom: zoomLevel,
+								center: myLatlng,
+								mapTypeId: google.maps.MapTypeId.ROADMAP
+			}
+			var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+			var marker = new google.maps.Marker({
+													position: myLatlng,
+													map: map,
+													title: markerTitle
+			});
+
+			var infowindow = new google.maps.InfoWindow(
+														{
+															content: contentString,
+															maxWidth: markerMaxWidth
+														}
+			);
+
+			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.open(map, marker);
+			});
+		}
+	</script>
+
+
+
+</head>
+
+<body onload="initialize()">
+    <div class="wrapper">
+        <div class="logo"><a href="home"><img src="/static/img/logo.PNG"></a></div>
+        <nav class="nav_menu">
+            <ul class="menu">
+                <li class="menu__item"><a href="home" class="menu__link"><span class="menu__title"><span
+                                class="menu__first-word" data-hover="Home">Home</span></span></a></li>
+                <li class="menu__item"><a href="intro" class="menu__link"><span class="menu__title"><span
+                                class="menu__first-word" data-hover="소개">소개</span></span></a></li>
+                <li class="menu__item"><a href="funding" class="menu__link"><span class="menu__title"><span
+                                class="menu__first-word" data-hover="펀딩">펀딩</span></span></a></li>
+                <li class="menu__item"><a href="#" class="menu__link"><span class="menu__title"><span
+                                class="menu__first-word" data-hover="입출금">입출금</span></span></a></li>
+                <li class="menu__item"><a href="login" class="menu__link"><span class="menu__title"><span
+                                class="menu__first-word" data-hover="로그인">로그인</span></span></a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="grid second-nav">
+                <div class="column-xs-12">
+                    
+                </div>
+            </div>
+            <div class="grid product">
+                <div class="column-xs-12 column-md-7">
+                    <div class="product-gallery">
+                        <div class="product-image">
+                            <img class="active" src="https://source.unsplash.com/g1Kr4Ozfoac">
+                        </div>
+                        <ul class="image-list">
+                            <li class="image-item"><img src="https://source.unsplash.com/QBpZGqEMsKg"></li>
+                            <li class="image-item"><img src="https://source.unsplash.com/yWwob8kwOCk"></li>
+                            <li class="image-item"><img src="https://source.unsplash.com/KdeqA3aTnBY"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column-xs-12 column-md-5">
+                    <h1>(주)AB주식회사</h1>
+                    
+                    <h2>한 조각 : ₩ 19.99</h2>
+                    <div class="description">
+                        
+                        <p>룰루랄라~.</p>
+                        <p>나에게 투자해라!.</p>
+                    </div>
+                    <button class="add-to-cart">구매</button>
+                    <button class="add-to-cart">판매</button>
+                </div>
+            </div>
+            <div class="container">
+
+                <ul class="tabs">
+                    <li class="tab-link current" data-tab="tab-1">핵심정보</li>
+                    <li class="tab-link" data-tab="tab-2">기획서</li>
+                    <li class="tab-link" data-tab="tab-3">회사정보</li>
+               
+                </ul>
+
+                <div id="tab-1" class="tab-content current">
+                    핵심정보~~
+                    
+                </div>
+                <div id="tab-2" class="tab-content">
+                    블라블라
+                </div>
+                <div id="tab-3" class="tab-content">
+                    회사에 투자해라!
+                    <div id="map_canvas"style="width:500px; height:300px;"></div>
+                </div>
+               
+            </div><!-- container -->
+
+            
+
+
+            <div class="grid related-products">
+                <div class="column-xs-12">
+                    <h4>다른 투자자들이 관심있게 본 목록</h4>
+                </div>
+                <div class="column-xs-12 column-md-4">
+                    <img src="https://source.unsplash.com/KdeqA3aTnBY">
+                    <h4>Succulent</h4>
+                    <p class="price">$19.99</p>
+                </div>
+                <div class="column-xs-12 column-md-4">
+                    <img src="https://source.unsplash.com/yWwob8kwOCk">
+                    <h4>Terranium</h4>
+                    <p class="price">$19.99</p>
+                </div>
+                <div class="column-xs-12 column-md-4">
+                    <img src="https://source.unsplash.com/KdeqA3aTnBY">
+                    <h4>Cactus</h4>
+                    <p class="counter">19.99</p>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+
+   
+</body>
+
+	
+
+<script type="text/javascript" src="static/js/info.js"></script>
+</html>
