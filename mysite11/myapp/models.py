@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from datetime import datetime
-from django_countries.fields import CountryField
+
 
 class Client_info(AbstractUser):
     client_code = models.CharField(primary_key=True, max_length = 6) # 6자리 고유 코드 부여
