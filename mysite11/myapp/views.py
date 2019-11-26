@@ -460,7 +460,7 @@ def send(request, requestcode): # 구매시 토큰을 전송하기 위한 과정
     standby_cal = standby_tmp - trans.requesttoken_num
     tokensell.objects.filter(sell_code=trans.sell_code).update(standby=standby_cal)
 
-    if(tokenselling.standby == 0.0 and tokenselling.quota ==0.0): #토큰 판매가 대기도 없고, 0인 상태라면 삭제
+    if(tokenselling.quota ==0.0): #토큰 판매가 0인 상태라면 삭제
         tokensell.objects.filter(sell_code=trans.sell_code).delete()
 
     #tokenchange에서 승인 완료로 변경해줌
