@@ -25,7 +25,7 @@ SECRET_KEY = '!cx*40k!dvs@0+8nlx&v2emdi7(1l&7g(3*tt&s&+!x2$tj&-t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 AUTH_USER_MODEL='myapp.Client_info'
 
 # Application definition
