@@ -124,6 +124,10 @@ def load(request):
 
 def addwhlist(request,companycode):
     buyer_account = request.POST.get('buyer_account')
+    request_code = request.POST.get('requestcode')
+
+    requesttoken.objects.filter(requestcode=request_code).update(whlist_check=1)
+
     client = Client_info.objects.get(MetamastAddress=buyer_account)
     add_client = tokenwhitelist(company_code=companycode, Client_code=client.client_code)
     add_client.save()
