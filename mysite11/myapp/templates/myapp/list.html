@@ -11,6 +11,7 @@
 <body>
   <div style="width: 77%; height: 1300px; margin: 0 auto; padding-left: 40px; padding-top: 100px;">
     {% for candidate in posts %}
+    {% if candidate.Company_code != '' %}
     <figure class=form_group style="margin: 20px;"> 
       <img src="{{candidate.photo.url}}" alt=""  onerror="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample57.jpg"/>
       <figcaption></figcaption>
@@ -23,7 +24,7 @@
       <h4>>>자세히 보기</h4>
       <a href="info/{{candidate.Company_code}}"></a>
     </figure>
-    
+    {% endif %}
     {% endfor %}
   </div>
   <div class="pagenav">
