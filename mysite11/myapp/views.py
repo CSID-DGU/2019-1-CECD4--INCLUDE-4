@@ -364,7 +364,8 @@ def search(request):
         return render(request,'myapp/search.html',content)
 
 def mypage(request): # 마이페이지 출력        
-
+        
+        login = request.user
         b = tokenwhitelist()
         tokenlist = Token.objects.filter(person = request.user.client_code)
         transsel = Tokenchange.objects.filter(seller = request.user.MetamastAddress).exclude(request_code=0)
