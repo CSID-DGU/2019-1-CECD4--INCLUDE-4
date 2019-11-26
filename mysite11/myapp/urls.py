@@ -31,6 +31,7 @@ urlpatterns=[
      path('statechangeuser/<tokenname>',views.statechangeuser,name='statechangeuser'),
      path('addwhlist/<companycode>',views.addwhlist,name='addwhlist'),
      path('finapproval',views.finapproval,name='finapproval'),
+     path('cantregist', views.tokenregis, name = 'cantregist'), 
  ]
 
 if settings.DEBUG:
