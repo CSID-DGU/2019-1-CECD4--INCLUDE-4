@@ -399,7 +399,7 @@ def mypage(request): # 마이페이지 출력
             requesttoken.objects.filter(Client_code__in=whlist).update(whlist_check='1')
             context = {'tokenlist':tokenlist,'transsel':transsel,'transbuy':transbuy, 'comptoken':comptoken, 'requlist':requlist, 'tokenorder':tokenorder, 'companycode':code, 'login':login}
         else: #투자만 하는 유저인 경우
-            context = {'tokenlist':tokenlist,'transsel':transsel,'transbuy':transbuy,'tokenorder':tokenorder}
+            context = {'tokenlist':tokenlist,'transsel':transsel,'transbuy':transbuy,'tokenorder':tokenorder, 'login':login}
         return render(request, 'myapp/mypage.html',context)
 
 def sell(request, tokenname): # 판매할 토큰을 판매자에게 보내기 위한 과정
