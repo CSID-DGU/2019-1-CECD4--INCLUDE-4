@@ -97,6 +97,10 @@ def addwhlist(request,companycode):
     return render(request, 'myapp/addwhlist.html', context)
 
 def tokenregis(request):
+     is_in = Client_account.objects.filter(Cli_code = request.user.client_code)
+    if is_in:
+        return render(request,'myapp/cantregist.html')
+
     if request.method == 'POST':
         form = uploadForm(request.POST, request.FILES)
         if form.is_valid():
