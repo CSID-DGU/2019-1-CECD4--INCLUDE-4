@@ -135,7 +135,7 @@ def addwhlist(request,companycode):
     return render(request, 'myapp/addwhlist.html', context)
 
 def tokenregis(request):
-     is_in = Client_account.objects.filter(Cli_code = request.user.client_code)
+    is_in = Client_account.objects.filter(Cli_code = request.user.client_code)
     if is_in:
         return render(request,'myapp/cantregist.html')
 
