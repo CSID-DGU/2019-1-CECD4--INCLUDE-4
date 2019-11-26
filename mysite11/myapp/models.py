@@ -12,6 +12,11 @@ class Client_info(AbstractUser):
     passport = models.CharField(max_length = 10, blank = True)
     MetamastAddress=models.CharField(max_length = 200, blank = True)
     KRW = models.IntegerField(default=0)
+    input_bank = models.CharField(max_length=10, blank = True)
+    input_account = models.CharField(max_length=20, blank = True)
+    output_bank = models.CharField(max_length=10, blank = True)
+    output_account = models.CharField(max_length=20, blank = True)
+    bankstatus = models.IntegerField(default=0) #11이면 input,output 둘다 존재, 10이면 input,output존재, 1이면 input,output존재, 0이면 모두 존재하지 않음
 
 class Company_info(models.Model) : # company information
     Company_code = models.CharField(primary_key= True,max_length= 6)
