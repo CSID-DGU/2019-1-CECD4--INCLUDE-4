@@ -1,11 +1,11 @@
 // MetaMask installation check
 if (typeof web3 !== 'undefined') {
-    console.log('MetaMask is installed');
+    //console.log('MetaMask is installed');
     web3 = new Web3(web3.currentProvider);
     window.ethereum.enable();
 }
 else {
-    console.log('MetaMask is not installed');
+    //console.log('MetaMask is not installed');
     var message = "메타마스크를 설치해주세요.";
     alert("크롬 브라우저를 통해 메타마스크를 설치해주세요.");
 }
@@ -13,15 +13,15 @@ else {
 // Reading MetaMask accounts
 web3.eth.getAccounts(function (err, accounts) {
     if (err != null) {
-        console.log(err)
+        //console.log(err)
     }
     else if (accounts.length === 0) {
-        console.log('MetaMask is locked');
+        //console.log('MetaMask is locked');
         alert("메타마스크 계정에 로그인 해주세요.");
     }
     else {
-        console.log('MetaMask is unlocked');
-        console.log(accounts[0]);
+        //console.log('MetaMask is unlocked');
+        //console.log(accounts[0]);
     }
 
     // network check
