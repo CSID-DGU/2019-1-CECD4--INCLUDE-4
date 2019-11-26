@@ -472,12 +472,7 @@ def send(request, requestcode): # 구매시 토큰을 전송하기 위한 과정
     buyer = Client_info.objects.get(MetamastAddress = trans.buyer_account)
     #st = Token.objects.filter(tokenname = token.tokenname) & Token.objects.filter(person = seller.client_code)
     st = Token.objects.filter(tokenname = token.tokenname)
-    if st:
-        st1 = st.get(person = request.user.client_code)
-        st1.quantity -= trans.requesttoken_num
-        st1.save()
-        if st1.quantity == 0:
-            st1.delete()
+
     bt = Token.objects.filter(person = buyer.client_code)
 
     if bt:
