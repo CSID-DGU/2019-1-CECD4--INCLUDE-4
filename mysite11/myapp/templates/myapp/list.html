@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+  <link rel="stylesheet" type="text/css" href="static/css/list.css">
+  <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="static/css/main.css">
+  <script type="text/javascript" src="static/js/info.js"></script>
+</head>
+
+<body>
+  <div style="width: 77%; height: 1300px; margin: 0 auto; padding-left: 40px; padding-top: 100px;">
+    {% for candidate in posts %}
+    <figure class=form_group style="margin: 20px;"> 
+      <img src="{{candidate.photo.url}}" alt=""  onerror="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample57.jpg"/>
+      <figcaption></figcaption>
+        <h1>{{candidate.Company_name}}</h1>
+        <h2>86.9%</h2>
+        <h3>| </h3>  <h3>20,001,246원</h3>
+        <p>{{candidate.information}}</p>
+        
+      </figcaption>
+      <h4>>>자세히 보기</h4>
+      <a href="info/{{candidate.Company_code}}"></a>
+    </figure>
+    
+    {% endfor %}
+  </div>
+  <div class="pagenav">
+    {%if posts.has_previous%}
+      <a href="?page=1">맨 앞으로</a>
+      <a href="?page={{posts.previous_page_number}}">이전으로</a>
+    {%endif%}
+      <span>{{posts.number}}</span>
+      <span>/</span>
+      <span>{{posts.paginator.num_pages}}</span>
+    {%if posts.has_next %}
+      <a href="?page={{posts.next_page_number}}">다음으로</a>
+      <a href="?page={{posts.paginator.num_pages}}">맨 뒤로</a>
+    {%endif%}
+
+  </div>
+
+</body>
+
+{%endblock content%}

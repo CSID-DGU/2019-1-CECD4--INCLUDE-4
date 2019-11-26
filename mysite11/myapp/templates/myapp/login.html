@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="static/css/login.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="static/js/login.js"></script>
+
+</head>
+
+
+<body>
+  
+    <div class="main_wrapper">
+    <div class="wrapper_login">
+        <div class="container">
+            <h1>Welcome</h1>
+            <form class="form" method="POST" action="">
+                {% csrf_token %}
+                <input id="username" name="username" type="text" placeholder="아이디" >
+                <input id="password" name="password" type="password" placeholder="비밀번호" >
+                <button type="submit" id="login-button">로그인</button>
+                <br><br><a color="white" href="{% url 'signup' %}">회원가입</a>
+            </form>
+
+        </div>
+
+        <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    </div>
+</body>
+
+{% endblock content %}

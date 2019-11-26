@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <title>part2</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="{% static 'js/registToken.js' %}"></script>
+
+
+
+    <style>
+
+
+    </style>
+    <br><br><br><br><br><br><br>
+    <div class = "info">
+    <center>
+        <h1 style="font-size:10px;">토큰 발행 트랜잭션을 실행하는 단계입니다</h> <br>
+            <h2 style="font-size:10px;">메타마스크 컨트랙트 승인 확인 후 페이지를 종료하시기 바랍니다</h><br>
+                <h3 style="font-size:14px; color:red;">사용자의 부주의로 토큰이 발행되지 않은 경우 본사는 책임을 지지 않습니다</h3><br>
+
+
+    </center>
+</div>
+    <script>
+        function generateToken() {
+            generateSecurity('{{mytoken.tokenname}}', '{{mytoken.initial}}', '{{mytoken.divide}}', '');
+        }
+    </script>
+
+    <script>
+        function add1CompWlist() {
+
+            addCompWlist('{{comptoken.wlistAddress}}', '{{comptoken.companyAccount}}');
+        }
+    </script>
+    <script>
+        function issue1Token() {
+
+            issueToken('{{comptoken.ContractAddress}}', '{{comptoken.companyAccount}}', '{{mytoken.quota}}');
+        }
+    </script>
+
+<div class = "jas">
+
+    <center>
+        {% if mytoken.state == "2" %}
+        
+    <button id="state" onclick="generateToken()" style="background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 50px;width:150px; border:none; cursor:pointer;">토큰 발행</button></td>
+        {% elif mytoken.state == "3" %}
+
+        <!--<td><button id = "state" onclick = "" style = "background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 100px;width:300px; border:none; cursor:pointer;">ABI 대기</button></td-->
+
+        {% elif mytoken.state == "4" %}
+       
+        <td><button id="state" onclick="add1CompWlist()"
+            style="background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 50px;width:150px; border:none; cursor:pointer;">화이트리스트 등록</button></td-->
+        {% elif mytoken.state == "5" %}
+        
+         <td><button id="state" onclick="issue1Token()"
+            style="background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 50px;width:150px; border:none; cursor:pointer;">토큰최종 발행</button></td-->
+        {% elif mytoken.state == "6" %}
+        <!--td><button id = "state" onclick = "" style = "background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 30px; border:none; cursor:pointer;">상태2</button></td-->
+        <td>거래 중</td>
+        {% else %}
+        <!--td><button id = "state" onclick = "" style = "background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 30px; border:none; cursor:pointer;">상태3</button></td-->
+        <td>등록 대기 중인 토큰이 없습니다.</td>-->
+        {% endif %}
+
+    </center>
+
+
+</div>
+    <br><br>
+
+    <br><br><br><br><br><br><br><br>
+</body>
+
+{% endblock content %}

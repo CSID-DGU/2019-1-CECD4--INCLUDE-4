@@ -1,0 +1,31 @@
+
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="static/css/registers.css">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="static/js/registers.js"></script>
+</head>
+
+<div class='wrap'>
+    <h1>
+        Register
+        <em>concept form validation</em>
+    </h1>
+    <form action='POST'>
+        <label for=''>회사명</label>
+        <input id='f_name' name='name' required='required' type='text'>
+        <label for=''>Last Name</label>
+        <input id='f_email' name='email' required='required' type='text'>
+        <input type='submit' value='Register'>
+        <div class='cb'></div>
+    </form>
+    <div class='messages_required'>
+            <div class='msg' id='name-field'>The field name is empty</div>
+            <div class='msg' id='email-field'>The field email is empty</div>
+            </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<script type="text/javascript" src="{% static 'js/addwhitelist.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/MetaMask_conn.js' %}"></script>
+
+<head>
+    <!-- sell내부에서 js를 찾아서 에러가 발생한다. -->
+</head>
+
+<body>
+
+    <!-- main body start -->
+    <script>
+        var whlistaddress = '{{whlistaddress}}';
+        var account = '{{addaccount}}';
+        console.log(whlistaddress);
+        console.log(account);
+
+        $(document).ready(function () {
+            addCompWlist(whlistaddress, account);
+            location.href="/finapproval";
+        });
+    </script>
+
+</body>
+
+{% endblock content %}

@@ -1,0 +1,262 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta charset="euc-kr">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/info.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css'%}">
+
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+    <script type="text/javascript">
+        google.load("visualization", "1", {packages:["corechart"]});
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['Year', 'Sales', 'Expenses'],
+            ['2004',  1000,      400],
+            ['2005',  1170,      460],
+            ['2006',  660,       1120],
+            ['2007',  1030,      540]
+          ]);
+  
+          var options = {
+            title: 'Company Performance'
+          };
+  
+          var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
+        }
+      </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+	<script>
+		function initialize() {
+
+			var Y_point			= 35.87110100714382;		// Y 좌표
+			var X_point			= 128.60169690333006;		// X 좌표
+
+			var zoomLevel		= 17;						// 첫 로딩시 보일 지도의 확대 레벨
+
+			var markerTitle		= "대구시청";				// 현재 위치 마커에 마우스를 올렸을때 나타나는 이름
+			var markerMaxWidth	= 300;						// 마커를 클릭했을때 나타나는 말풍선의 최대 크기
+
+			// 말풍선 내용
+			var contentString	= '<div id="content">' +
+			'<div id="siteNotice">' +
+			'</div>'+
+			'<h2 id="firstHeading" class="firstHeading">대구시청</h2>'+
+			'<div id="bodyContent">'+
+			'<p>대구광역시청(大邱廣域市廳, Daegu Metropolitan City Hall)은 대구광역시의 행정을 총괄하는 기관이다.<br />' +
+			'<a href="http://www.daegu.go.kr" target="_blank">http://www.daegu.go.kr</a></p>'+
+			'</div>'+
+			'</div>';
+
+			var myLatlng = new google.maps.LatLng(Y_point, X_point);
+			var mapOptions = {
+								zoom: zoomLevel,
+								center: myLatlng,
+								mapTypeId: google.maps.MapTypeId.ROADMAP
+			}
+			var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+
+			var marker = new google.maps.Marker({
+													position: myLatlng,
+													map: map,
+													title: markerTitle
+			});
+
+			var infowindow = new google.maps.InfoWindow(
+														{
+															content: contentString,
+															maxWidth: markerMaxWidth
+														}
+			);
+
+			google.maps.event.addListener(marker, 'click', function() {
+				infowindow.open(map, marker);
+			});
+		}
+	</script>
+</head>
+
+<body onload="initialize()">
+   
+
+    <main>
+        <div class="container">
+          
+            <div class="grid second-nav">
+                <div class="column-xs-12">
+                    
+                </div>
+            </div>
+            <div class="grid product">
+                <div class="column-xs-12 column-md-7">
+                    <div class="product-gallery">
+                        <div class="product-image">
+                            <img class="active" src="{{q.photo.url}}">
+                        </div>
+                        <ul class="image-list">
+                            <li class="image-item"><img src="https://source.unsplash.com/QBpZGqEMsKg"></li>
+                            <li class="image-item"><img src="https://source.unsplash.com/yWwob8kwOCk"></li>
+                            <li class="image-item"><img src="https://source.unsplash.com/KdeqA3aTnBY"></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column-xs-12 column-md-5">
+                    <h1>{{q.Company_name}}</h1>
+                    
+                    <h2>230,304원</h2>
+                    
+                    <p id="counter1"></p>
+                    <!---<p id="counter2"></p>
+<p id="counter3"></p>--->
+
+
+                    <div class="simple-info">
+                        21세기 글로벌 리더의 중심, 성현그룹이 이끌어가겠습니다.
+
+                </div>
+                    <button class="add-to-cart" onclick="location.href='{% url 'tokenbuying' q.Company_code %}'">지금 투자하기</a></button>
+                    <!--<button type="button" class="btn_like">
+                            <span class="img_emoti">좋아요</span>
+                            <span class="ani_heart_m"></span>
+                    </button>-->
+                    
+                    <button class="add-button">홈페이지</button>
+                    <button class="add-button">문의하기</button>
+                    <button class="add-button">공유하기</button>
+                </div>
+               
+            </div>
+            <div class="description">
+                        
+                <p>{{q.information}}</p>
+                    
+
+                <!--<div id="chart_div" style="width: 900px; height: 500px;"></div>
+                -->
+
+
+                </div>
+
+                <div class="container">
+                        <div class='multitab-section'>
+                          <ul class='multitab-widget multitab-widget-content-tabs-id'>
+                            <li class='multitab-tab'><a href='#multicolumn-widget-id1'>핵심정보</a></li>
+                            <li class='multitab-tab'><a href='#multicolumn-widget-id2'>기획서</a></li>
+                            <li class='multitab-tab'><a href='#multicolumn-widget-id3'>회사정보</a></li>
+                          </ul>
+                          <div class='multitab-widget-content multitab-widget-content-widget-id' id='multicolumn-widget-id1'>
+                            <span class='sidebar' id='sidebartab1' preferred='yes'>
+                                    <img class="active" src="{{q.keyinfo.url}}">
+                            </span>
+                          </div>
+                          <div class='multitab-widget-content multitab-widget-content-widget-id' id='multicolumn-widget-id2'>
+                            <span class='sidebar' id='sidebartab2' preferred='yes'>
+                              
+                            </span>
+                          </div>
+                          <div class='-content multitab-widget-content-widget-id' id='multicolumn-widget-id3'>
+                            <span class='sidebar' id='sidebartab3' preferred='yes'>
+                                    회사에 투자해라!
+                                    <div id="map_canvas"style="width:500px; height:300px;"></div>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+
+
+
+            
+
+
+            <div class="grid related-products">
+                <div class="column-xs-12">
+                    <h4>다른 투자자들이 관심있게 본 목록</h4>
+                </div>
+                <div class="column-xs-12 column-md-4">
+                    <img src="https://source.unsplash.com/KdeqA3aTnBY">
+                    <h4>Succulent</h4>
+                    <p class="price">$19.99</p>
+                </div>
+                <div class="column-xs-12 column-md-4">
+                    <img src="https://source.unsplash.com/yWwob8kwOCk">
+                    <h4>Terranium</h4>
+                    <p class="price">$19.99</p>
+                </div>
+                <div class="column-xs-12 column-md-4">
+                    <img src="https://source.unsplash.com/KdeqA3aTnBY">
+                    <h4>Cactus</h4>
+                    <p class="price">19.99</p>
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+
+   
+</body>
+
+    
+<script>
+jQuery(document).ready(function($)
+{ $(".multitab-widget-content-widget-id").hide(); 
+$("ul.multitab-widget-content-tabs-id li:first a").addClass("multitab-widget-current").show(); 
+$(".multitab-widget-content-widget-id:first").show(); 
+$("ul.multitab-widget-content-tabs-id li a").click(function() { $("ul.multitab-widget-content-tabs-id li a").removeClass("multitab-widget-current a"); $(this).addClass("multitab-widget-current"); $(".multitab-widget-content-widget-id").hide(); var activeTab = $(this).attr("href"); $(activeTab).fadeIn(); return false; }); });
+</script>
+
+<script type="text/javascript" src="{% static 'js/info.js' %}"></script>
+<script>
+$('button').click(function(){
+	if($(this).hasClass('btn_unlike')){
+	  $(this).removeClass('btn_unlike');
+	  $('.ani_heart_m').removeClass('hi');
+	  $('.ani_heart_m').addClass('bye');
+	}
+	else{
+	  $(this).addClass('btn_unlike');
+	  $('.ani_heart_m').addClass('hi');
+	  $('.ani_heart_m').removeClass('bye');
+	}
+  });
+
+</script>
+<script>
+function numberCounter(target_frame, target_number) {
+    this.count = 0; this.diff = 0;
+    this.target_count = parseInt(target_number);
+    this.target_frame = document.getElementById(target_frame);
+    this.timer = null;
+    this.counter();
+};
+numberCounter.prototype.counter = function() {
+    var self = this;
+    this.diff = this.target_count - this.count;
+     
+    if(this.diff > 0) {
+        self.count += Math.ceil(this.diff / 5);
+    }
+     
+    this.target_frame.innerHTML = this.count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')+"원";
+     
+    if(this.count < this.target_count) {
+        this.timer = setTimeout(function() { self.counter(); }, 20);
+    } else {
+        clearTimeout(this.timer);
+    }
+};
+
+new numberCounter("counter1", 20201403);
+new numberCounter("counter2", 21565748);
+new numberCounter("counter3", 121554864865);
+
+  </script>
+
+
+{%endblock content%}

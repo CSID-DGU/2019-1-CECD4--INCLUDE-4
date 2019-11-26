@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<script type="text/javascript" src="{% static 'js/send_sell.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/MetaMask_conn.js' %}"></script>
+
+<head>
+    <!-- sell내부에서 js를 찾아서 에러가 발생한다. -->
+</head>
+
+<body>
+
+    <!-- main body start -->
+    <script>
+        var abi = '{{ABI}}';
+        var json_ABI = abi.replace(/&quot/g, "\"");
+        json_ABI = json_ABI.replace(/;/g, "");
+        var buyer = '{{buyer}}';
+        var ContractAddress = '{{ContractAddress}}';
+        var quota = '{{tokennum}}';
+        $(document).ready(function () {
+            sendToken(ContractAddress, buyer, quota);
+            location.href="/finapproval";
+        });
+    </script>
+
+</body>
+
+
+
+{% endblock content %}

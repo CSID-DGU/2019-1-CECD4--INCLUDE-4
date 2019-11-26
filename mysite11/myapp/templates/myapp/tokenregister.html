@@ -1,0 +1,86 @@
+<!--1. 회사 정보 등록
+      - 회사 이름
+      - 간단 소개
+      - 이미지 파일
+    2. company code 형성
+    3. 토큰 등록
+      - 토큰명
+      - 토큰 가격
+      - 발행할 토큰 개수 
+    4. db: 토큰 등록용 db하나 생성
+           company_info에 등록
+           account어쩌고에 등록
+    -->
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% block content %}
+<head>
+        <link rel="stylesheet" type="text/css" href="static/css/main.css">
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+   
+</head>
+<body>
+        <style>
+                .body{
+                    height:100%
+                }
+                .register{
+                    height: 1000px;
+                    position: relative;
+                    top : 100px;
+                    width: 100%;
+                    margin: 0 auto;
+                }
+                table{
+                    height: 150px;
+                    width:50%;
+                }
+                th{
+                   
+                    width: 500px;
+                    text-align: center;
+                    background: #dcdcdc;
+                  
+                    font-size: 14px;
+                   
+                }
+                td{
+                    width: 1000px;
+                    text-align: left;
+                   
+                    font-size: 14px;
+                }
+                h1{
+                    background-color: #FDD296;
+                    width: 50%;
+                    color: white;
+                    font-size: 24px;
+                    text-align: left;
+                    font-family: arial;
+                }
+                
+                </style>
+  
+    <div class = "register" >
+        <div class = "company_info">
+                {%if user.is_authenticated %}
+                <center><h1> Registering Token</h1>  </center>   
+                <br>
+            <form action = "" method = "POST" enctype = "multipart/form-data">
+                {% csrf_token %}
+                <center>   <table>  {{form.as_table}}</table>
+                    <br>
+             <input type = "submit" value = "등록" style="width: 300px; height: 65px; background-color:#dea243; font-size: 20px;border:white; color: white;">
+             </center>
+               
+            </form>
+            {% endif %}
+        </div>
+        
+        
+    </div>
+    <br><br><br><br><br><br><br><br><br><br
+    ><br><br><br><br>
+</body>
+{%endblock content%}

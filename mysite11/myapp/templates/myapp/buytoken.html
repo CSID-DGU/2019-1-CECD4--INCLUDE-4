@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<script type="text/javascript" src="static/js/MetaMask_conn.js"></script>
+<script type="text/javascript" src="static/js/smartContract.js"></script>
+
+<body>
+
+    <!-- main body start -->
+    <form action="{% url 'buytoken' %}" method="post">
+        {% csrf_token %}
+        {{form|linebreaks}}
+        <input type="submit" value="submit" name="submit">
+    </form>
+    {% for candidate in candidates %}
+    <script>
+        var abi = '{{candidate.ABI}}';
+        var json_ABI = abi.replace(/&quot/g, "\"");
+        json_ABI = json_ABI.replace(/;/g, "");
+        $(document).ready(function () {
+            sendToken('{{candidate.ContractAddress}}', json_ABI);
+        });
+    </script>
+    {% endfor %}
+
+</body>
+
+{%endblock content%}

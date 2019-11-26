@@ -1,0 +1,124 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+.body {
+  position: relative;
+
+}
+
+
+
+table{
+  width:100%;
+
+}
+th,td{
+  border-bottom : null;
+  text-align: left;
+}
+h2{
+float:right;
+color:gray;
+font-size:14px;
+
+}
+
+.subwapper {
+  width: 600px;
+  height: auto;
+  margin: 0 auto;
+ 
+}
+h1{
+  font-size:25px;
+
+  text-align:center;
+
+  margin : 50px;
+  font-weight:normal;
+
+}
+
+
+h3 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 0.9em;
+  color: #666;
+  margin: 0 0 35px 0;
+}
+
+form {
+  width: 100%;
+  height: auo;
+  margin: 0 auto;
+  text-align: center;
+}
+
+
+
+input{
+  float:right;
+  display: inline-block;
+  width: 400px;
+  height: 50px;
+  margin: 5px auto;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 1.0em;
+  border: 1.5px solid #cccccc;
+  transition: all 0.2s ease;
+}
+
+input:focus {
+  border: thin solid #015b7e;
+  outline: none;
+}
+
+::-webkit-input-placeholder {
+  color: #ccc;
+  font-weight: 700;
+  font-size: 0.9em;
+}
+
+
+
+input[type="submit"]{
+  background : #000000;
+  width:100%;
+  color:white;
+  font-size:20px;
+}
+
+input:hover {
+  background: #014965;
+}
+
+.signup {
+  width: 100%;
+  height: auto;
+  border: none;
+  outline: none;
+  margin: 0 auto;
+  padding: 20px;
+  display: block;
+  color: #666;
+  text-transform: uppercase;
+  text-align: center;
+  box-sizing: border-box;
+  font-size: 0.8em;
+}
+
+.signup p, a {
+  font-size: 0.8em;
+  text-decoration: none;
+}
+
+.signup p {
+  color: #ccc;
+}
+
+ .signup a {
+  text-decoration: none;
+  color: #015b7e;
+  font-size: 1em;
+  padding-left: 25px;
+}

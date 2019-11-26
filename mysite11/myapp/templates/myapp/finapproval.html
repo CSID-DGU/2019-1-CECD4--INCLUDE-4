@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+    <!-- sell내부에서 js를 찾아서 에러가 발생한다. -->
+    <script src="static/js/MetaMask_conn.js"></script>
+    <script src="static/js/smartContract.js"></script>
+</head>
+
+<body>
+
+    <div style="width: 50%; margin: 0 auto; padding: 300px; text-align: center;">
+
+        <h3>승인이 완료되었습니다.</h3>
+        <br><br>
+        <button onclick="location.href='/home'" style="width: 200px; height: 45px; background-color:#dea243; font-size: 20px;
+        border:white; color: white;">홈으로 돌아가기</button>
+    </div>
+
+</body>
+
+{%endblock content%}

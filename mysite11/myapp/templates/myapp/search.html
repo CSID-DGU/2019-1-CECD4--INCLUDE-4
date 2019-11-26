@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+{% block content %}
+
+
+<form method="POST">
+    <select name="code">
+        <option value="">회사선택</option>
+        {% for candidate in candidates %}
+        <option value={{candidate.Company_code}} id=code>{{candidate.Company_name}}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit" id="login-button">제출</button>
+</form>
+
+
+{% endblock content %}

@@ -1,0 +1,376 @@
+{% extends 'base.html'%}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="static/css/mypage.css">
+</head>
+
+
+<body>
+
+    <style>
+        b.token {
+
+            position: relative;
+            left: 380px;
+        }
+
+        b.selhead {
+
+            position: relative;
+            left: 380px;
+        }
+
+        b.buyhead {
+
+            position: relative;
+            left: 380px;
+        }
+
+        b.comphead {
+
+            position: relative;
+            left: 380px;
+        }
+
+        .show {
+            height: 100%;
+            width: 100px;
+            left: 100px;
+            float: left;
+            margin-left: 450px;
+
+
+        }
+
+        .list {
+            float: left;
+            height: 100%;
+            width: 1250px;
+        }
+
+        .a {
+            margin: 0 auto;
+            width: 100%
+        }
+
+        table.company {
+            border-collapse: collapse;
+            text-align: left;
+            line-height: 1.5;
+            width: 55%;
+            margin: 0 auto;
+
+        }
+
+        table.company thead th {
+            padding-left: 10px;
+            border-top: 1px solid black;
+            text-align: center;
+            color: gray;
+            font-family: 돋움;
+            font-size: 11px;
+        }
+
+        table.company tbody td {
+            width: 350px;
+            padding-left: 10px;
+            color: black;
+            font-family: 돋움;
+            font-size: 11px;
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript" src="static/js/MetaMask_conn.js"></script>
+    <script type="text/javascript" src="static/js/smartContract.js"></script>
+
+    <br><br><br><br>
+    <div class="show">
+
+
+        <center>
+            <h1> #INFORMATION</h1>
+        </center>
+        <a href="http://127.0.0.1:8000/mypage">
+            <h>MYPAGE</h>
+        </a>
+        <br><br>
+        <a href="http://127.0.0.1:8000/tokenregist">
+            <h>REGIST TOKEN</h>
+        </a>
+
+    </div>
+    <div class="list">
+        <!-- 보유 토큰이 있는 경우 -->
+        <table class="company">
+
+            <thead>
+                <tr>
+                    <td style="font-size: 10px; border-bottom: white;">
+                        <h2>보유 토큰</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="cols">토큰명</th>
+                    <th scope="cols">보유 개수</th>
+                    <th scope="cols">토큰판매</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if tokenlist %}
+                {% for token in tokenlist %}
+                <tr>
+                    <td>
+                        <!--<script>
+            var string = "{{token.tokenname}}";
+            var len = string.length;
+            var strArray = string.substr(18,len);
+            var strAr = strArray.split(')');
+            
+            document.write(strAr[0]);
+            </script>-->{{token.tokenname}}</td>
+                    <td>{{token.quantity}}</td>
+                    <td>
+                        <form action="/sell/{{token.tokenname}}" method="post">
+                            {% csrf_token %}
+                            <label for="number">개수 </label>
+                            <input type="text" id="number" name="number">
+                            <br>
+                            <label for="price">가격</label>
+                            <input type="text" id="price" name="price">
+                            <br>
+                    </td>
+                    <td>
+                        <input type="submit" value="판매"
+                            style="border-radius: 10px; background-color: #3c3c3c; width: 80px; border:0px; height: 35px; color: white;">
+
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                <!--{% else % }
+        <tr>
+                <td>-</td>
+                <td>0</td>
+            </tr>
+        -->
+                {% endif %}
+            </tbody>
+
+        </table>
+
+
+        <br><br><br><br>
+
+
+        <!-- 판매 내역 -->
+
+        <br><br>
+
+        <table class="company">
+            <thead>
+                <tr>
+                    <td style="font-size: 10px; border-bottom: white;">
+                        <h2>판매 내역</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="width: 20%;">토큰명</th>
+                    <th style="width: 15%;">토큰개수</th>
+                    <th style="width: 20%;">토큰가격</th>
+                    <th style="width: 20%;">상태</th>
+                    <th>거래일시</th>
+                </tr>
+            </thead>
+            {% if transsel %}
+            {% for sel in transsel %}
+            <tr>
+                <td>{{sel.tokenname}}</td>
+                <td>{{sel.quantity}}</td>
+                <td>{{sel.tokenprice}}</td>
+                <td>{% if sel.Approval == True %} 완료
+                    {% else %} 승인 요청중
+                    {% endif %}
+                </td>
+                <td>{{sel.date}}</td>
+
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+
+
+        <br><br><br>
+
+
+
+        <!-- 구매 내역 -->
+        <br><br>
+
+        <table class="company">
+            <thead>
+                <tr>
+                    <td style="font-size: 10px; border-bottom: white;">
+                        <h2>구매 내역</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <th style="width: 20%;">토큰명</th>
+                    <th style="width: 15%;">토큰개수</th>
+                    <th style="width: 20%;">토큰가격</th>
+                    <th style="width: 20%;">상태</th>
+                    <th>거래일시</th>
+                </tr>
+            </thead>
+            {% if transbuy %}
+            {% for sel in transbuy %}
+            <tr>
+                <td>{{sel.tokenname}}</td>
+                <td>{{sel.quantity}}</td>
+                <td>{{sel.tokenprice}}</td>
+                <td>{% if sel.Approval == True %} 완료
+                    {% else %} 승인 요청중
+                    {% endif %}
+                </td>
+                <td>{{sel.date}}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
+
+        <br><br><br><br><br>
+        <div>
+            <table class="company">
+                <thead>
+                    <tr>
+                        <td style="font-size: 10px; border-bottom: white;" colspan="2">
+                            <h2>토큰 구매 대기 내역</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>구매자</th>
+                        <th>토큰개수</th>
+                        <th>토큰가격</th>
+                        <th>화이트리스트여부</th>
+                        <th>구매승인</th>
+                    </tr>
+                </thead>
+                {% if requlist %}
+                {% for com in requlist %}
+                <tr>
+                    <td>{{com.buyer_account}}</td>
+                    <td>{{com.requesttoken_num}}</td>
+                    <td>{{com.one_tokenprice}}</td>
+                    <td>
+                        {% if com.whlist_check == 1 %}
+                        등록 완료
+                        {% else %}
+                        <form action="/addwhlist/{{companycode}}" method="POST">
+                            {% csrf_token %}
+                            <input type="text" value="{{com.buyer_account}}" style="display: none;" id='buyer_account' name='buyer_account'> 
+                            <input type="submit" value="등록"
+                                style="border-radius: 10px; background-color: #3c3c3c; width: 80px; border:0px; height: 35px; color: white; cursor:pointer;">
+                        </form>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if com.whlist_check == 1 %}
+                        <form action="/send/{{com.requestcode}}" method="post">
+                            {% csrf_token %}
+                            <input type="submit" value="승인"
+                                style="border-radius: 10px; background-color: #3c3c3c; width: 80px; border:0px; height: 35px; color: white; cursor:pointer;">
+                        </form>
+                        {% else %}
+                        불가
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+        <!-- 여기에서는, 사용자가 투자자가 될수도 있고 회사가 될 수도 있기 때문에
+    투자자로는, 구매한 토큰에 대한 정보를 볼 수 있는 테이블과 내 자산에 대해서 확인할 수 있는 테이블이 필요
+    회사로는, 크라우드 펀딩을 하고 있는 회사와 토큰에 대한 정보 테이블, 사용자가 구매를 요청한 리스트에 대한 테이블 출력 필요-->
+
+        <br><br><br><br><br>
+        <div>
+            <table class="company">
+                <thead>
+                    <tr>
+                        <td style="font-size: 10px; border-bottom: white;">
+                            <h2>토큰 등록 내역</h2>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>토큰명</th>
+                        <th>발행개수</th>
+                        <th>진행상태</th>
+
+                    </tr>
+                </thead>
+                {% if tokenorder %}
+                {% for tok in tokenorder %}
+
+                <tr>
+                    <td>{{tok.tokenname}}</td>
+                    <td>{{tok.quota}}</td>
+                    {% if tok.state == "0" %}
+                    <!--td><button id = "state" onclick = "" style = "background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 30px; border:none;cursor:pointer;">상태0</button></td-->
+                    <td>토큰 예약 대기</td>
+                    {% elif tok.state == "1" %}
+                    <td>
+                        <form action="/statechangeuser/{{tok.tokenname}}" method="post">
+                            {% csrf_token %}
+                            <input type="submit"
+                                style="background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 30px; border:none;cursor:pointer;"
+                                value="토큰 발행">
+                        </form>
+                    </td>
+                    {% elif tok.state == "2" %}
+                    <!--td><button id = "state" onclick = "" style = "background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 30px; border:none; cursor:pointer;">상태2</button></td-->
+                    <td>ABI 대기</td>
+                    {% elif tok.state == "3" %}
+                    <td>
+                        <form action="/statechangeuser/{{tok.tokenname}}" method="post">
+                            {% csrf_token %}
+                            <input type="submit"
+                                style="background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 30px; border:none;cursor:pointer;"
+                                value="화이트리스트등록">
+                        </form>
+                        </td-->
+                        {% elif tok.state == "4" %}
+                    <td>
+                        <form action="/statechangeuser/{{tok.tokenname}}" method="post">
+                            {% csrf_token %}
+                            <input type="submit"
+                                style="background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 30px; border:none;cursor:pointer;"
+                                value="토큰최종발행">
+                        </form>
+                        </td-->
+                        {% elif tok.state == "5" %}
+                        <!--td><button id = "state" onclick = "" style = "background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 30px; border:none; cursor:pointer;">상태2</button></td-->
+                    <td>거래 중</td>
+                    {% else %}
+                    <!--td><button id = "state" onclick = "" style = "background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 30px; border:none; cursor:pointer;">상태3</button></td-->
+                    <td>등록 대기 중인 토큰이 없습니다.</td>
+                    {% endif %}
+
+                </tr>
+                {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+
+    </div>
+    <br><br><br><br>
+
+    <br><br><br><br> <br><br><br><br> <br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br>
+</body>
+
+{% endblock content %}

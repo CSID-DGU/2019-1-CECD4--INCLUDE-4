@@ -1,0 +1,235 @@
+{% extends 'base.html'%}
+{% block content %}
+
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="static/css/slide.css">
+    <link rel="stylesheet" type="text/css" href="static/css/company_list.css">
+    <link rel="stylesheet" type="text/css" href="static/css/news_card.css">
+    <script type="text/javascript" src="static/js/news_card.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+
+
+
+
+    <!-- main body start -->
+    <div class="main_wrapper">
+        <div class="nav_body_left">
+            <div class="box">
+                <h1>가장 혁신적인 투자</h1>
+                <br>#INCLUDE는 회사의 분할소유권을 발행하고,
+                <br>소유권을 자유롭게 거래할 수 있는 플랫폼입니다.<br><br>
+                <button class="button" style="vertical-align:middle">
+                    <a href="list"><span>바로가기</span></a>
+                </button>
+            </div>
+            <br><br><br><br><br><br>
+            <div class="rotate">
+                SCROLL -----------
+            </div>
+        </div>
+        <nav class="nav_body">
+            <li><img src="static/img/company.jpg"></li>
+        </nav>
+    </div>
+    <br><br><br>
+
+    <!-- main body2 start -->
+    <div class="main_wrapper">
+        <div class="center">
+            <br><br><br><br><br><br>
+            <p style="font-size: 30px;">현재까지</p>
+            <br>
+            <span style="color:#BF9000">
+            <div class="counter" data-count="123456789">
+                0
+            </div>
+            </span> 
+            <br>
+            <p style="font-size: 30px;">만큼의 거래가 이루어졌습니다.</p>
+
+            <br><br><b>평가수익률</b>
+        </div>
+        <br><br><br><br><br><br>
+        <div class="company">
+            <div class="company__container">
+
+                <ul class="company__container__list">
+                    <li class="company__container__list__item">부영건설 + 1.027%</li>
+                    <li class="company__container__list__item">세가그룹 - 1.027%</li>
+                    <li class="company__container__list__item">세광건설 + 0%</li>
+                    <li class="company__container__list__item">인클루드전자 + 0.027%</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- main body3 start -->
+    <div class="main_wrapper">
+        <!-- how to make sto token slide -->
+        <div class="slider">
+            <div class="slide_viewer2">
+                <div class="slide_group">
+                    <div class="slide">
+                        <img src="static/img/slide-1.png">
+                    </div>
+                    <div class="slide">
+                        <img src="static/img/slide-2.png">
+                    </div>
+                    <div class="slide">
+                        <img src="static/img/slide-3.png">
+                    </div>
+                </div>
+            </div>
+        </div><!-- End // .slider -->
+
+        <div class="slide_buttons">
+        </div>
+
+        <div class="directional_nav">
+            <div class="previous_btn" title="Previous">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                    y="0px" width="65px" height="65px" viewBox="-11 -11.5 65 66">
+                    <g>
+                        <g>
+                            <path fill="#474544"
+                                d="M-10.5,22.118C-10.5,4.132,4.133-10.5,22.118-10.5S54.736,4.132,54.736,22.118
+                          c0,17.985-14.633,32.618-32.618,32.618S-10.5,40.103-10.5,22.118z M-8.288,22.118c0,16.766,13.639,30.406,30.406,30.406 c16.765,0,30.405-13.641,30.405-30.406c0-16.766-13.641-30.406-30.405-30.406C5.35-8.288-8.288,5.352-8.288,22.118z" />
+                            <path fill="#474544"
+                                d="M25.43,33.243L14.628,22.429c-0.433-0.432-0.433-1.132,0-1.564L25.43,10.051c0.432-0.432,1.132-0.432,1.563,0	c0.431,0.431,0.431,1.132,0,1.564L16.972,21.647l10.021,10.035c0.432,0.433,0.432,1.134,0,1.564	c-0.215,0.218-0.498,0.323-0.78,0.323C25.929,33.569,25.646,33.464,25.43,33.243z" />
+                        </g>
+                    </g>
+                </svg>
+            </div>
+            <div class="next_btn" title="Next">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                    y="0px" width="65px" height="65px" viewBox="-11 -11.5 65 66">
+                    <g>
+                        <g>
+                            <path fill="#474544"
+                                d="M22.118,54.736C4.132,54.736-10.5,40.103-10.5,22.118C-10.5,4.132,4.132-10.5,22.118-10.5	c17.985,0,32.618,14.632,32.618,32.618C54.736,40.103,40.103,54.736,22.118,54.736z M22.118-8.288	c-16.765,0-30.406,13.64-30.406,30.406c0,16.766,13.641,30.406,30.406,30.406c16.768,0,30.406-13.641,30.406-30.406 C52.524,5.352,38.885-8.288,22.118-8.288z" />
+                            <path fill="#474544"
+                                d="M18.022,33.569c 0.282,0-0.566-0.105-0.781-0.323c-0.432-0.431-0.432-1.132,0-1.564l10.022-10.035 			L17.241,11.615c 0.431-0.432-0.431-1.133,0-1.564c0.432-0.432,1.132-0.432,1.564,0l10.803,10.814c0.433,0.432,0.433,1.132,0,1.564 L18.805,33.243C18.59,33.464,18.306,33.569,18.022,33.569z" />
+                        </g>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <!-- slide end -->
+    </div>
+
+    <!-- main body4 start -->
+    <div class="main_wrapper2">
+        <div class="center">
+            <br><br><br><br><br><br>
+            <p style="font-size: 25px;">투자</p><br>
+            <table>
+                <tbody>
+                    <tr>
+                        <td><img src="static/img/up.PNG"></td>
+                        <td>
+                            <div class="subtitle"><b>회사의 가치 상승</b></div>장기적 성장성에서 자본시장을 능가하는 투자에 참여할 수 있습니다.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="static/img/fund.PNG"></td>
+                        <td>
+                            <div class="subtitle"><b>소유권 매매 차익</b></div>온라인 Market을 통해 개인 간 분할 소유권을 자유롭게 거래할 수 있습니다.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><img src="static/img/safe.PNG"></td>
+                        <td>
+                            <div class="subtitle"><b>안전한 소유 보장</b></div>#INCLUDE를 통한 소유권 구매와 양도는 증권거래법 상 인정 요건을 모두 충족합니다.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- main body5 start -->
+    <div class="main_wrapper3">
+        <br>
+        <div class="cards">
+            <div class="card">
+                <img class="card__image" src="https://source.unsplash.com/300x225/?coin" alt="beach" />
+                <div class="card-title">
+                    <span class="left"></span>
+                    <span class="right"></span>
+                    </a>
+                    <h2>
+                        암호화폐 스타트업 INX
+                        <small>SEC에 STO 신청….</small>
+                    </h2>
+                </div>
+                <p style="text-align: center;">영국령 지브롤터 소재 암호화폐 스타트업 INX가 1억3000만 달러 규모의 자금을 조달하기 위해 기업공개에 나선다.
+                    <br><br>
+                    <a href="https://blockinpress.com/archives/21500" class="btn">Read more</a>
+                </p>
+            </div>
+
+            <div class="card">
+                <img class="card__image" src="https://source.unsplash.com/300x225/?bitcoin" alt="beach" />
+                <div class="card-title">
+                    <span class="left"></span>
+                    <span class="right"></span>
+                    </a>
+                    <h2>
+                        토큰에서 미래를 보다
+                        <small>STO출사표 던진 섬너그룹홀딩스</small>
+                    </h2>
+                </div>
+                <p style="text-align: center;">스위스 기반 증권형토큰 거래소 스마트밸러, 국내에서는 암호화폐거래소 빗썸 등이 STO 시장에 공을 들이고 있는 배경
+                    <br><br>
+                    <a href="https://blockinpress.com/archives/21162" class="btn">Read more</a>
+                </p>
+            </div>
+
+            <div class="card">
+                <img class="card__image" src="https://source.unsplash.com/300x225/?bank" alt="beach" />
+                <div class="card-title">
+                    <span class="left"></span>
+                    <span class="right"></span>
+                    </a>
+                    <h2>
+                        홍콩블록체인'STO시대'
+                        <small>글로벌 블록체인 시장에서 주목하는 지역</small>
+                    </h2>
+                </div>
+                <p style="text-align: center;">STO 기반 마련 글로벌STOX 국제법 위배되지 않는 서비스 계획 중
+                    <br><br>
+                    <a href="https://www.beinews.net/news/articleView.html?idxno=27279" class="btn">Read more</a>
+                </p>
+            </div>
+
+        </div>
+
+
+    </div>
+    </div>
+
+    <!-- main body6 start -->
+    <div class="main_wrapper2">
+        <br><br><br>
+        <div class="center">
+            <br><br><br><br><br><br><br><br><br>
+            <img src="static/img/logo_bottom.PNG"t><br>
+            <p>새로운 방식의 투자를 지금 당장 시작해보세요</p>
+            <button class="button" style="vertical-align:middle">
+                <a href="signup"><span>회원가입</span></a>
+            </button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+<script type="text/javascript" src="static/js/counter.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript" src="static/js/slide.js"></script>
+
+{%endblock content%}

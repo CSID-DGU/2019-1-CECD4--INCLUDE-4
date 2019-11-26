@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="{% static 'js/registToken.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/MetaMask_conn.js' % }"></script>
+    <script type="text/javascript" src="{% static 'js/smartContract.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/registToken.js' %}"></script>
+
+    
+
+  
+    
+        <script>
+            function registerTicker(){
+                Register.registerTicker('{{mytoken.metamaskaddress}}', '{{mytoken.initial}}', '{{mytoken.tokenname}}', '', function(){
+                    
+                });
+            }
+        </script>
+
+
+
+  
+    <button id = "state" onclick = "registerTicker()"  style = "background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 30px; border:none;cursor:pointer;">토큰 예약 </button>
+  
+
+      
+            
+<br><br>
+   
+<br><br><br><br><br><br><br><br>
+</body>
+
+{% endblock content %}

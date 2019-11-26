@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+
+<body>
+    <script type="text/javascript" src="static/js/registToken.js"></script>
+
+
+    <style>
+    table.admin1 {
+border-collapse: collapse;
+text-align: left;
+line-height: 1.5;
+width: 55%;
+margin: 0 auto;
+
+}
+
+table.admin1 thead th {
+padding-left: 10px;
+border-top: 1px solid black;
+text-align:center;
+color: gray;
+font-family: 돋움;
+font-size: 11px;
+}
+
+table.admin1 tbody td {
+width: 350px;
+padding-left: 10px;
+color: black;
+font-family: 돋움;
+font-size: 11px;
+text-align: center;
+}      
+    </style>
+    <table class="admin1">
+        <thead>
+            <tr>
+                <td style="font-size: 10px; border-bottom: white;">
+                    <h2>state0</h2>
+                </td>
+            </tr>
+            <tr>
+                <th>토큰명</th>
+                <th>트랜잭션 실행</th>
+             
+            </tr>
+        </thead>
+        {% if state0 %}
+        {% for st in state0 %}
+        <script>
+            function registerTicker(){
+                Register.registerTicker('{{st.metamaskaddress}}', '{{st.initial}}', '{{st.tokenname}}', '', function(){
+                    
+                });
+            }
+        </script>
+        
+        <tr>
+            <td>{{st.tokenname}}</td>
+            <td><form action = "/statechange/{{st.tokenname}}" method = "post">
+                {% csrf_token %}
+                <input type = "submit"  style = "background: #3c3c3c; font-family:돋움; color:white; font-size:11px; height: 30px; border:none;cursor:pointer;">토큰 예약
+            </form>
+            </td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+<br><br>
+  
+        
+<br><br><br><br><br><br><br><br>
+</body>
+
+{% endblock content %}

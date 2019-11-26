@@ -1,0 +1,35 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<head>
+        <link rel="stylesheet" type="text/css" href="static/css/registers.css">
+        <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="static/js/register.js"></script>
+</head>
+
+<div class='wrap'>
+        <h1>
+          Register
+          <em>concept form validation</em>
+        </h1>
+        <form action='/'>
+          <label for=''>First Name</label>
+          <input id='f_first' required='required' type='text'>
+          <label for=''>Last Name</label>
+          <input id='f_last' required='required' type='text'>
+          <label for=''>Password</label>
+          <input id='f_password' required='required' type='password'>
+          <label for=''>Confirm Password</label>
+          <input id='f_confirm' required='required' type='password'>
+          <input type='submit' value='Register'>
+          <div class='cb'></div>
+        </form>
+        <div class='messages_required'>
+          <div class='msg' id='first-field'>The field First Name is empty</div>
+          <div class='msg' id='last-field'>The field Last Name is empty</div>
+          <div class='msg' id='password-field'>The field Password is empty</div>
+          <div class='msg' id='confirm-field'>The field Confirm Password doesn't match</div>
+        </div>
+      </div>
+{% endblock content %}

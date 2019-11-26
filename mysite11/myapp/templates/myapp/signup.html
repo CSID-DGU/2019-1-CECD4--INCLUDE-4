@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <link rel="stylesheet" type="text/css" href="static/css/signup.css">
+</head>
+
+<body>
+        <div class="subwapper">
+              <div class="subheader">
+
+              </div>
+                  <h1>가입 정보 입력</h1>
+                  {% if error %}
+                  <h3 style="color:red">{{error}}</h3>
+                  {% endif %}
+                  <form name="f1" action="" method="POST" onsubmit="CheckForm()">
+              {% csrf_token %}
+              
+              
+                 
+  
+            
+                  <h2>*필수 입력 사항</h2>
+              <table>
+                <tr>
+                <th>아이디*</th>
+                <th>
+                <input name="username" placeholder="아이디를 입력해주세요." type="text">
+              </th>
+            </tr>
+          <tr>
+              <th>비밀번호*</th>
+              <th>
+               <input name="password" placeholder="영문,숫자를 조합하여 8~16자로 입력해 주세요."type="password">
+              </tr>
+            <tr>
+              <th>비밀번호 확인*</th>
+              <th>
+               <input name="password_check" placeholder="비밀번호를 다시 입력해 주세요." type="password">
+              </tr>
+            <tr>
+              <th>이메일</th>
+              <th>
+                <input name="email"placeholder="이메일을 입력해 주세요." type="email">
+              </th>
+            </tr>
+            <tr>
+              <th>메타마스크계정주소</th>
+              <th><input name="metamask" placeholder="예시)0xEdc60dB..."" type="text"></th>
+            </tr>
+
+
+            <tr>
+              <td colspan="2" align="center">
+              <input id="check1" type="checkbox"><label for="check1">#INclude 이용약관 동의(필수)</label> 
+            </td>
+            </tr>
+            <tr><td colspan="2" >
+            <input type="submit" value="회원가입"></td>
+          </tr>   
+          
+          </table>
+              
+              
+            
+                </form>
+                
+           
+              </div>
+              <div class="signup">
+                  <p>not a member ? <a href="{% url 'login' %}">sign up</a></p>
+                </div>
+
+
+
+  
+</body>
+<script>
+function CheckForm(){ 
+   if(!f1.check1.checked){
+    alert('약관에동의해 주세요');
+    return false;
+   }
+
+}
+</script>
+{%endblock content%}

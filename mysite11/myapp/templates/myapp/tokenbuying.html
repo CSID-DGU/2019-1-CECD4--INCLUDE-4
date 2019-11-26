@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+{% extends 'base.html' %}
+{% block content %}
+
+<script type="text/javascript" src="static/js/MetaMask_conn.js"></script>
+<script type="text/javascript" src="static/js/smartContract.js"></script>
+
+<body>
+
+    <div style="height: 1000px; margin:0 auto; width:55%">
+        <br><br>
+
+        <h1>{{company.Company_name}}</h1>
+        <hr style="border-color:#cccccc; border-width:0.8px;">
+        <table style="margin:0; border-color:white;">
+            <tr>
+                <th style="border-bottom: white; font-size:13px; color:#9b9b9b;">1 토큰당 가격</th>
+                <th style="border-bottom: white; font-size:13px; color:#9b9b9b">전일 대비 증가율</th>
+                <th style="border-bottom: white; font-size:13px; color:#9b9b9b;">전체 가격</th>
+            </tr>
+            <tr>
+                <td style="border-bottom: white; font-size: 20px;"><b>1,660,000</b></td>
+                <td style="border-bottom: white; font-size: 20px;"><b>0 %</b></td>
+                <td style="border-bottom: white; font-size: 20px;"><b>1,660,000,000</b></td>
+            </tr>
+        </table>
+        <hr style="border-color:#cccccc; border-width:0.8px;">
+
+        <br><br>
+
+        <div style="width:49%; float:left; overflow-y: scroll; height: 550px;">
+            <table id="example-table-1" style="float: right;">
+                <thead>
+                    <tr style="height: 60px;">
+                        <th style="border-top:2px solid black; text-align: center; font-size: 13px;"><b>판매 대기 토큰</b>
+                        </th>
+                        <th style="border-top:2px solid black; text-align: center; font-size: 13px;"><b>1 토큰당 가격</b>
+                        </th>
+                        <th style="border-top:2px solid black; text-align: center; font-size: 13px;"><b>대기 여부</b></th>
+                        <th style="display:none;">판매자 계정</th>
+                        <th style="display:none;">판매 코드</th>
+                        <th style="display:none;">토큰 이름</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if selllist %}
+                    {% for sell in selllist %}
+                    <tr style="height: 17px;">
+                        <td style="text-align: center; font-size:20px;"><b>{{sell.quota}}</b></td>
+                        <td style="text-align: center; color:#e6b86f; font-size:20px;"><b>KRW {{sell.price}}</b></td>
+                        <td style="text-align: center; font-size:20px;">{% if sell.standby == 0 %}
+                             
+                            {% else %} <b>{{sell.standby}}</b>
+                            {% endif %}
+                        </td>
+                        <td style="display: none;">{{sell.metamask_account}}</td>
+                        <td style="display: none;">{{sell.sell_code}}</td>
+                        <td style="display: none;">{{sell.tokenname}}</td>
+                    </tr>
+                    {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+        <div style="width:49%; float: right;">
+            <table
+                style="float: left; border-left: 1px solid #d4d4d4; border-right: 1px solid #d4d4d4; border-bottom: 1px solid #d4d4d4; border-spacing: 30px;">
+                <tr>
+                    <td colspan="2"
+                        style="border-top:2px solid black; text-align: center; font-size: 12px; text-align: left; line-height: 1.8em; color:#9b9b9b; padding: 30px;">
+                        <br>
+                        <b style="color: #989898; font-size: 13px; border-bottom: white;">구매방법</b><br>
+                        1. 구매는 KRW 캐쉬로 가능합니다. KRW 캐쉬 입금은 입출금 메뉴에서 가능합니다. <br>
+                        2. 구매 희망 조각수와 가격(1토큰 기준)을 입력하세요.
+                        <br>
+                    </td>
+                </tr>
+                <tr style="height: 50px;">
+                    <td style="border-bottom: white; width: 42%; font-size: 14px; padding: 20px;">사용 가능 캐쉬</td>
+                    <td style="border-bottom: white; width: 58%; font-size: 20px; text-align: right; padding: 20px;">
+                        <b style="font-size: 25px;" id="userKRW">
+                            {% if loginuserinfo %}
+                            {{ loginuserinfo.KRW}}
+                            {% endif %}
+                        </b>
+                        KRW
+                    </td>
+                </tr>
+                <tr style="height: 60px;">
+                    <td style="border-bottom: white; width: 42%; font-size: 14px; padding: 20px;">토큰 수</td>
+                    <!-- 토큰수에 대해서 입력하면 총 주문 금액이 토큰당 가격에 비례 계산하여 출력되도록 해야한다.-->
+                    <td style="border-bottom: white; width: 58%; font-size: 14px; padding: 20px;">
+                        <input type="text" name="token_num" id="token_num"
+                            style="width: 280px; height: 35px; border:1px solid #d4d4d4; text-align: right; font-size: 16px;"
+                            placeholder="최소 0.01토큰ㅤ">
+                </tr>
+                <tr style="height: 50px;">
+                    <td style=" width: 42%; font-size: 14px; padding: 20px;">1 토큰당 가격</td>
+                    <td style=" width: 58%; font-size: 19px; text-align: right; padding: 20px;">
+                        <b>
+                            <div class="col-lg-12" id="ex1_Result2">0 KRW</div>
+                        </b>
+                    </td>
+                </tr>
+                <tr style="height: 100px;">
+                    <td
+                        style="border-bottom: white; border-top:1px solid #9b9b9b;  width: 42%; font-size: 25px; text-align: right; padding: 20px;">
+                        <b>Total</b></td>
+                    <td
+                        style="border-bottom: white; border-top:1px solid #9b9b9b;  width: 58%; font-size: 20px; text-align: right; padding: 20px;">
+                        <b><label id="total" name="total" style="font-size: 25px;"></label></b> KRW</td>
+                </tr>
+                <!-- 잔액 부족 시 출력하는 곳.
+                <tr style="height: 30px;">
+                    <td colspan="2" style="border-bottom: white;">
+                        <label id="needKRW" style="font-size: 15px; color: red;"></label>
+                    </td>
+                </tr>
+            -->
+                <tr style="height: 120px;">
+                    <td colspan="2" style="text-align:center;">
+                        <form action="{% url 'tokenbuying' {{code}} %" method="POST">
+                            {% csrf_token %}
+                             <!-- 어떠한 행동을 했을 떄 해당 값이 저장되는 함수를 실행하도록 해야한다. 이사이에서 뭔가 실행하면서 값을 저장해야 한다.  -->
+                                <input type=" text" id="company_code" name="company_code" value="{{code}}"
+                            style="display: none;">
+                            <input type="text" id="tokenname" name="tokenname" style="display: none;">
+                            <input type="text" id="one_tokenprice" name="one_tokenprice" style="display: none;">
+                            <input type="text" id="token_num_label" name="token_num_label" style="display: none;">
+                            <input type="text" id="buyeraccount" name="buyeraccount"
+                                value="{{loginuserinfo.MetamastAddress}}" style="display: none;">
+                            <input type="text" id="selleraccount" name="selleraccount" style="display: none;">
+                            <input type="text" id="sellertotaltoken" name="sellertotaltoken" style="display: none;">
+                            <input type="text" id="Client_code" name="Client_code" 
+                                value="{{loginuserinfo.client_code}}"style="display: none;">
+                            <input type="text" id="sell_code" name="sell_code" style="display: none;">
+
+                            <input type="submit" value="구매 주문" style="width: 480px; height: 65px; background-color:#dea243; font-size: 20px;
+                            border:white; color: white;"></button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <hr>
+
+</body>
+
+<script>
+
+    var one_tokenprice = 0;
+    var token_num = 0;
+    var selleraccount = 0;
+    var selltoken = 0;
+    var date = 0;
+    var totalprice = 0;
+    var buyeraccount = 0;
+    var company_code = 0;
+    var sell_code = 0;
+    var tokenname = 0;
+
+    // 테이블의 Row 클릭시 값 가져오기
+    $("#example-table-1 tr").click(function () {
+
+        var str = ""
+        var tdArr = new Array();	// 배열 선언
+
+        // 현재 클릭된 Row(<tr>)
+        var tr = $(this);
+        var td = tr.children();
+
+        // tr.text()는 클릭된 Row 즉 tr에 있는 모든 값을 가져온다.
+        console.log("클릭한 Row의 모든 데이터 : " + tr.text());
+
+        // 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+        td.each(function (i) {
+            tdArr.push(td.eq(i).text());
+        });
+
+        console.log("배열에 담긴 값 : " + tdArr);
+
+        // td.eq(index)를 통해 값을 가져올 수도 있다.
+        selltoken = td.eq(0).text();
+        var one_tokenprice_before = td.eq(1).text();
+        one_tokenprice = one_tokenprice_before.replace("KRW", "");
+        var name = td.eq(2).text();
+        selleraccount = td.eq(3).text();
+        sell_code = td.eq(4).text();
+        tokenname =td.eq(5).text();
+
+
+        $("#ex1_Result1").html(" *  = " + tokenname);
+        $("#ex1_Result2").html(one_tokenprice + " KRW");
+
+        token_num = $("#token_num").val();
+        if (token_num != 0) {
+            caltotalprice(token_num);
+        }
+    });
+
+    function set_info(code, user_account) {
+        company_code = code;
+        buyeraccount = user_account;
+    }
+
+    function savesellinglist() {
+        /* db rquestbuytoken 테이블에 company_code, 1토큰가격, 구매요청한토큰개수, 판매자계정, 해당판매자가판매하고있는총토큰양에 대하여 저장한다. */
+        if ($("#userKRW").val() > totalprice && totalprice != 0) { // 사용자 금액이 부족하면
+            $("#needKRW").text("잔액이 부족합니다.");
+        }
+
+        $("#one_tokenprice").val(one_tokenprice);
+        $("#token_num_label").val(token_num);
+        $("#selleraccount").val(selleraccount);
+        $("#sellertotaltoken").val(selltoken);
+        $("#sell_code").val(sell_code)
+        $("#tokenname").val(tokenname)
+    }
+
+    function caltotalprice() {
+        console.log("selltoken = " + selltoken + "그리고 token_num = " + token_num);
+        var tmp = 0.1;
+        if (token_num <= selltoken) {
+            console.log("0이상");
+            if (one_tokenprice != 0) {
+                console.log("one_tokenprice=" + one_tokenprice);
+                totalprice = parseFloat(token_num) * parseFloat(one_tokenprice);
+                console.log("totalprice=" + totalprice);
+                $("#total").text(totalprice.toFixed(0));
+                savesellinglist();
+            }
+        }
+        else {
+            console.log("0미만");
+            if(token_num < 0.01){
+                $("#token_num").val(0.01);   
+            }
+            else{
+            $("#token_num").val(selltoken);
+            //alert("판매 토큰양을 초과하였습니다.");
+            }
+        }
+    }
+
+    $("#token_num").on("propertychange change keyup paste input", function () {
+        if (event.keyCode < 48 || event.keyCode > 57) {
+            event.returnValue = false;
+        }
+
+
+        token_num = $(this).val();
+        console.log("테스트1" + token_num);
+        caltotalprice();
+
+        /*if (token_num == oldVal) {
+            return;
+        }
+        oldVal = currentVal;
+        console.log("test2"+oldVal);
+        */
+    });    
+</script>
+
+{%endblock content%}

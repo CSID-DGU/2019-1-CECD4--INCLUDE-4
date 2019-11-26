@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <!-- menu -->
+    <div class = "wrapper">
+        <div class = "logo"><a href="home.html"><img src="static/img/logo.PNG"></a></div>
+    <nav class= "nav_menu">
+        <ul class = "menu">
+            <li class = "menu__item"><a href="home" class="menu__link"><span class="menu__title"><span class="menu__first-word" data-hover="Home">Home</span></span></a></li>
+            <li class = "menu__item"><a href="intro" class="menu__link"><span class="menu__title"><span class="menu__first-word" data-hover="소개">소개</span></span></a></li>
+            <li class = "menu__item"><a href="funding" class="menu__link"><span class="menu__title"><span class="menu__first-word" data-hover="펀딩">펀딩</span></span></a></li>
+            <li class = "menu__item"><a href="#" class="menu__link"><span class="menu__title"><span class="menu__first-word" data-hover="입출금">입출금</span></span></a></li>
+            {%if user.is_authenticated %}<!--로그인일때-->>
+            <li class = "menu__item"><a href="signout" class="menu__link"><span class="menu__title"><span class="menu__first-word" data-hover="로그아웃">로그아웃</span></span></a></li>
+            {% else %}
+            <li class = "menu__item"><a href="signin" class="menu__link"><span class="menu__title"><span class="menu__first-word" data-hover="로그인">로그인</span></span></a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    </div>
+
+    <!-- main body start -->
+
+</body>
+{% block content %}
+
+{% endblock content %}
+
+
+    <!-- footer -->
+    <footer>
+        <div class="foo_div">
+        </div>
+        <div class="foo_div1">
+            <br><br>
+            <span>#INCLUDE</span> <span> | </span>
+            <span>대표 : #INCLUDE 팀원</span> <span> | </span>
+            <span>사업자등록번호 : 000-00-00000</span> <span> | </span>
+            <p>주소 : 대한민국 서울특별시 중구 필동로 1길30 </p>
+            <p>STO FLATFORM - Security Token</p>
+
+            <!--
+            <img src="http://www.newscj.com/news/photo/201610/380601_341606_5826.jpg">
+            <img src="https://lh5.ggpht.com/yVfPv-yLjIuBjpKj41NLkLXmuVv8XzH0m2hf-_sz9lQDv9WB9SX0McB8Jn4bQe4w5Q=w300">
+            <img src="https://media.rocketpunch.com/cache/2e/d5/2ed5970e32545f0b1d74beac75914e7b.jpg">
+            -->
+        </div>
+    </footer>
+</html>

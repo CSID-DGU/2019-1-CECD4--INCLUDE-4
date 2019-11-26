@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <!-- menu -->
+    <div class = "wrapper">
+        <div class = "logo"><a href="home"><img src="static/img/logo.PNG"></a></div>
+    <nav class= "nav_menu">
+        <ul class = "menu">
+            <li class = "menu__item"><a href="home" class="menu__link"><span class="menu__title"><span class="menu__first-word" data-hover="Home">Home</span></span></a></li>
+            <li class = "menu__item"><a href="intro" class="menu__link"><span class="menu__title"><span class="menu__first-word" data-hover="소개">소개</span></span></a></li>
+            <li class = "menu__item"><a href="funding" class="menu__link"><span class="menu__title"><span class="menu__first-word" data-hover="펀딩">펀딩</span></span></a></li>
+            <li class = "menu__item"><a href="#" class="menu__link"><span class="menu__title"><span class="menu__first-word" data-hover="입출금">입출금</span></span></a></li>
+            <li class = "menu__item"><a href="login" class="menu__link"><span class="menu__title"><span class="menu__first-word" data-hover="로그인">로그인</span></span></a></li>
+        </ul>
+    </nav>
+    </div>
+
+    <!-- main body start -->
+
+    <center>
+        <div calss = "container">
+            <table class = "table table-striped">
+                <thead>
+                    <tr>
+                  
+                        <td><B>토큰이름</B></td>
+                        <td><B>이만큼판다판다곰아님 귀여운 판다곰 절대아님</B></td>
+                        <td><B>얼마게</B></td>
+                       
+                     
+                    </tr>
+                </thead>
+                <tbody>
+                
+                {% if sell %}
+                   {% for sel in sell %}
+                    <tr>
+                        <td>{{sel.tokenname}}</td>
+                        <td>{{sel.quota}}</td>
+                        <td>{{sel.price}}</td>
+                       
+                    </tr>
+                    {% endfor %}
+                    {% else %}
+                    <p>아 안팔아욧</p>
+                    {% endif %}
+                </tbody>
+
+                <br><br><br>
+               
+          
+        </center>
+    
+         <br><br>
+         <thead>
+            <tr>
+          
+                <td><B>토큰이름</B></td>
+                <td><B>산다</B></td>
+                <td><B>x원에</B></td>
+                
+             
+            </tr>
+        </thead>
+        <tbody>
+        
+        {% if buy %}
+           {% for bu in buy %}
+            <tr>
+                <td>{{bu.tokenname}}</td>
+                <td>{{bu.quota}}</td>
+                <td>{{bu.price}}</td>
+               
+            </tr>
+            {% endfor %}
+            {% else %}
+            <p>안사요</p>
+            {% endif %}
+        </tbody>
+
+
+
+
+</body>
+
+</html>
