@@ -311,6 +311,7 @@
                         <form action="/addwhlist/{{companycode}}" method="POST">
                             {% csrf_token %}
                             <input type="text" value="{{com.buyer_account}}" style="display: none;" id='buyer_account' name='buyer_account'> 
+                            <input type="text" value="{{com.requestcode}}" style="display: none;" id="requestcode" name="requestcode">
                             <input type="submit" value="등록"
                                 style="border-radius: 10px; background-color: #3c3c3c; width: 80px; border:0px; height: 35px; color: white; cursor:pointer;">
                         </form>
