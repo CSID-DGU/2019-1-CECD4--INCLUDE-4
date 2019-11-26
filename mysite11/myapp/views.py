@@ -397,7 +397,7 @@ def mypage(request): # 마이페이지 출력
             whlist = tokenwhitelist.objects.filter(company_code = code)
             #whlist를 체크해서 리스트에 들어가 있으면, requesttoken에서 whlist_check 값을 1로 바꿔준다.
             requesttoken.objects.filter(Client_code__in=whlist).update(whlist_check='1')
-            context = {'tokenlist':tokenlist,'transsel':transsel,'transbuy':transbuy, 'comptoken':comptoken, 'requlist':requlist, 'tokenorder':tokenorder, 'companycode':code}
+            context = {'tokenlist':tokenlist,'transsel':transsel,'transbuy':transbuy, 'comptoken':comptoken, 'requlist':requlist, 'tokenorder':tokenorder, 'companycode':code, 'login':login}
         else: #투자만 하는 유저인 경우
             context = {'tokenlist':tokenlist,'transsel':transsel,'transbuy':transbuy,'tokenorder':tokenorder}
         return render(request, 'myapp/mypage.html',context)
