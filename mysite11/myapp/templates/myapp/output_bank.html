@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<body>
+    <br><br><br><br><br><br> <br>
+    <div style="width: 80%; margin: 0 auto; height: 500px;">
+        <table style="width: 80%;">
+            <tr>
+                <td style="border-bottom: 2px solid; font-size: 15px; vertical-align: bottom;"><b>{{login.username}}</b> 님이 소유한 캐쉬</td>
+                <td style="border-bottom: 2px solid; font-size: 15px; vertical-align: bottom;"><b style="font-size: 40px;">{{login.KRW}}</b><b>KRW</b></td></tr>
+            <tr><td style="border-bottom: white;"></td></tr>
+            <tr><td style="border-bottom: white;"></td></tr>
+            <tr>
+                <td style="border-bottom: white; border-top: 2px solid; border-left: 2px solid; border-right: 2px solid; font-size: 20px; text-align: center;">출금</td>
+                <td style="border-bottom: 2px solid;"></td>
+                <td style="border-bottom: 2px solid;"></td>
+                <td style="border-bottom: 2px solid;"></td>
+            </tr>
+            <tr><td style="border-bottom: white;"></td></tr>
+            <tr><td style="border-bottom: white;"></td></tr>
+            <tr>
+                <td style="border-bottom: white;" colspan="2">보유한 KRW캐쉬를 현금으로 출금</td>
+            </tr>
+            <tr><td style="border-bottom: white;"></td></tr>
+            <tr style="background: #f9f9f9;">
+                <td style="text-align: center; width: 15%; border-bottom: white;">은행 선택</td>
+                        <form action="/output_bank/{{login.client_code}}" method="POST">
+                            <td style="width: 14%; border-bottom: white;">
+                                    <select name="bank_select" style="width: 150px; height: 45px;">
+                                            <option selected="selected" disabled style="display: none;">은행 선택</option>
+                                            <option value="기업">기업</option>
+                                            <option value="국민">국민</option>
+                                            <option value="신한">신한</option>
+                                          </select>
+                            </td>
+                            <td style="width: 35%;"><input type="text" name="bank_account" style="height: 39px; width: 400px;" placeholder="계좌번호 입력 (-없이)"></td>
+                            {% csrf_token %}
+                            <td style="border-bottom: white;">
+                            <input type="submit" value="출금 계좌 등록"
+                                style="width: 150px; height: 45px; border: 1px solid black; background-color: black; cursor:pointer; color:white; font-size: 14px;">
+                            </td>
+                        </form>
+            </tr>
+            <tr>
+                    <td style="border-bottom: white;"> </td>
+            </tr>
+            <tr>
+                <td style="border-bottom: white;" colspan="3"> 
+                        * 출금 신청 시 최대 20분 이내로 이체가 완료됩니다. (은행 점검 시간 제외)</td>
+                <td style="border-bottom: white;"></td>
+                <td style="border-bottom: white;"></td>
+            </tr>
+        </table>
+
+        <br><br>
+    </div>
+
+</body>
+
+{%endblock content%}

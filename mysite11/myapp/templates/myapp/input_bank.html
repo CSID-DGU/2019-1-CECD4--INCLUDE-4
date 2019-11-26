@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<body>
+    <br><br><br><br><br><br> <br>
+    <div style="width: 80%; margin: 0 auto; height: 500px;">
+
+        <table style="width: 80%;">
+            <tr>
+                <td style="border-bottom: 2px solid; font-size: 15px; vertical-align: bottom;"><b>{{login.username}}</b> 님이 소유한 캐쉬</td>
+                <td style="border-bottom: 2px solid; font-size: 15px; vertical-align: bottom;"><b style="font-size: 40px;">{{login.KRW}}</b><b>KRW</b></td></tr>
+            <tr><td style="border-bottom: white;"></td></tr>
+            <tr><td style="border-bottom: white;"></td></tr> 
+            <tr>
+                <td style="border-bottom: white; border-top: 2px solid; border-left: 2px solid; border-right: 2px solid; font-size: 20px; text-align: center;">입금</td>
+                <td style="border-bottom: 2px solid;"></td>
+                <td style="border-bottom: 2px solid;"></td>
+            </tr>
+            <tr><td style="border-bottom: white;"></td></tr>
+            <tr><td style="border-bottom: white;"></td></tr>
+            <tr>
+                <td style="border-bottom: white;">거래를 위한 KRW 입금</td>
+            </tr>
+            <tr style="background: #f9f9f9;">
+                <td style="text-align: center; width: 15%; border-bottom: white;">은행 선택</td>
+                        <form action="/input_bank/{{login.client_code}}" method="POST">
+                            <td style="width: 40%; border-bottom: white;">
+                                    <select name="bank_select" style="width: 450px; height: 45px;">
+                                            <option selected="selected" disabled style="display: none;">은행 선택</option>
+                                            <option value="기업">기업</option>
+                                            <option value="국민">국민</option>
+                                            <option value="신한">신한</option>
+                                          </select>
+                            </td>
+                            {% csrf_token %}
+                            <td style="border-bottom: white;">
+                            <input type="submit" value="계좌 생성"
+                                style="width: 100px; height: 45px; border: 1px solid black; background-color: black; color:white; cursor:pointer; ">
+                            </td>
+                        </form>
+            </tr>
+            <tr>
+                    <td style="border-bottom: white;"> </td>
+            </tr>
+            <tr>
+                <td style="border-bottom: white;" colspan="3"> * 위 계좌로 입금하시면 최대 10분 이내로 KRW캐쉬에 반영됩니다. (은행 점검 시간 제외)</td>
+                <td style="border-bottom: white;"></td>
+                <td style="border-bottom: white;"></td>
+            </tr>
+        </table>
+
+        <br><br>
+    </div>
+
+</body>
+
+{%endblock content%}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<head>
+    <!-- sell내부에서 js를 찾아서 에러가 발생한다. -->
+</head>
+
+<body>
+
+    <!-- main body start -->
+    <script>
+        $(document).ready(function () {
+            location.href="/mypage";
+        });
+    </script>
+
+</body>
+
+
+
+{% endblock content %}
