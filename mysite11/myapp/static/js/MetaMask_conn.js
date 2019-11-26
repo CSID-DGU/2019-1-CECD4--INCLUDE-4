@@ -63,7 +63,6 @@ web3.eth.getAccounts(function (err, accounts) {
                 alert("MetaMask 로그인 계정이 변경되었습니다.");
                 clearInterval(accountInterval);
                 accounts[0] = accs;
-                //location.href = "/";
             }
         });
     }, 2000); // accountInterval
