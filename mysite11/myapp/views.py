@@ -84,6 +84,44 @@ def info(request,code):
     company=get_object_or_404(Company_info,Company_code=code)
     return render(request, 'myapp/info.html',{'q':company})
 
+def input_bank(request, client_code):
+    user = Client_info.objects.get(client_code=client_code)
+    if request.method == 'POST':
+        answer = request.POST['bank_select']
+        account = 123456789
+        Client_info.objects.filter(client_code=client_code).update(input_bank=answer)
+        Client_info.objects.filter(client_code=client_code).update(input_account=account)
+        if user.bankstatus == 0:
+            Client_info.objects.filter(client_code=client_code).update(bankstatus=10)
+        else :
+            Client_info.objects.filter(client_code=client_code).update(bankstatus=11)
+        return render(request, 'myapp/load.html')
+    elif request.method == 'GET':
+        login = Client_info.objects.get(client_code=client_code)
+        context = {'login':login}
+        return render(request, 'myapp/input_bank.html', context)
+    
+def output_bank(request, client_code):
+    user = Client_info.objects.get(client_code=client_code)
+    if request.method == 'POST':
+        answer = request.POST['bank_select']
+        account = request.POST['bank_account']
+
+        Client_info.objects.filter(client_code=client_code).update(output_bank=answer)
+        Client_info.objects.filter(client_code=client_code).update(output_account=account)
+        if user.bankstatus == 0:
+            Client_info.objects.filter(client_code=client_code).update(bankstatus=1)
+        else :
+            Client_info.objects.filter(client_code=client_code).update(bankstatus=11)
+        return render(request, 'myapp/load.html')
+    elif request.method == 'GET':
+        login = Client_info.objects.get(client_code=client_code)
+        context = {'login':login}
+        return render(request, 'myapp/output_bank.html', context)
+
+def load(request):
+    return render(request, 'myapp/load.html')
+
 def addwhlist(request,companycode):
     buyer_account = request.POST.get('buyer_account')
     client = Client_info.objects.get(MetamastAddress=buyer_account)
