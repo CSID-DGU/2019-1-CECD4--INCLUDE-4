@@ -32,6 +32,9 @@ urlpatterns=[
      path('addwhlist/<companycode>',views.addwhlist,name='addwhlist'),
      path('finapproval',views.finapproval,name='finapproval'),
      path('cantregist', views.tokenregis, name = 'cantregist'), 
+     path('input_bank/<client_code>',views.input_bank,name='input_bank'),
+     path('output_bank/<client_code>',views.output_bank,name='output_bank'),
+     path('load',views.load,name='load'),
  ]
 
 if settings.DEBUG:
