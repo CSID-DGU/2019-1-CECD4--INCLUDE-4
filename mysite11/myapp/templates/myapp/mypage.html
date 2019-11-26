@@ -82,6 +82,11 @@
             font-size: 11px;
             text-align: center;
         }
+        
+        table.info {
+            width: 55%;
+            height: 200px;
+        }
     </style>
     <script type="text/javascript" src="static/js/MetaMask_conn.js"></script>
     <script type="text/javascript" src="static/js/smartContract.js"></script>
@@ -103,6 +108,41 @@
 
     </div>
     <div class="list">
+        <!-- 사용자 krw와 계좌 관련 -->
+        <table class="info">
+            <tr>
+                <td rowspan="2" style="width: 45%; text-align: center; font-size: 33px; border-top: 1px solid black; border-left: 1px solid #cccccc;  border-bottom: 1px solid #cccccc;"><b>{{login.KRW}}</b><div style="font-size: 20px;">KRW</div></td>
+                <td style="text-align: center; border-top: 1px solid black; border-right: 1px solid #cccccc; border-left: 1px solid #cccccc; border-bottom: 1px solid #cccccc;">입금계좌<br>
+                   {% if login.bankstatus == 0 or login.bankstatus == 1%}
+                    <form action="/input_bank/{{login.client_code}}" method="GET">
+                        {% csrf_token %}
+                        <input type="submit" value="등록"
+                            style="margin: 10px; border: 1px solid black; background-color: black; color: white; cursor:pointer;">
+                    </form>
+                    {% else %}
+                        <div style="font-size: 13px; color: gray;">{{login.input_bank}} {{login.input_account}}</div>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: center; border-right: 1px solid #cccccc; border-left: 1px solid #cccccc;  border-bottom: 1px solid #cccccc;">출금계좌<br>
+                    {% if login.bankstatus == 0 or login.bankstatus == 10%}
+                    <form action="/output_bank/{{login.client_code}}" method="GET">
+                        {% csrf_token %}
+                        <input type="submit" value="등록"
+                            style="margin: 10px; border: 1px solid black; background-color: black; color: white; cursor:pointer;">
+                    </form>
+                    {% else %}
+                        <div style="font-size: 13px; color: gray;">{{login.output_bank}} {{login.output_account}}</div>
+                    {% endif %}
+                </td>
+            </tr>
+
+        </table>
+        <br><br><br>        
+        
+        
+        
         <!-- 보유 토큰이 있는 경우 -->
         <table class="company">
 
@@ -113,10 +153,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <th scope="cols">토큰명</th>
-                    <th scope="cols">보유 개수</th>
-                    <th scope="cols">토큰판매</th>
-                    <th></th>
+                    <th scope="cols" style="border-bottom: 1px solid #cccccc;">토큰명</th>
+                    <th scope="cols" style="border-bottom: 1px solid #cccccc;">보유 개수</th>
+                    <th scope="cols" style="border-bottom: 1px solid #cccccc;">토큰판매</th>
+                    <th style="border-bottom: 1px solid #cccccc;"></th>
                 </tr>
             </thead>
             <tbody>
@@ -178,11 +218,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <th style="width: 20%;">토큰명</th>
-                    <th style="width: 15%;">토큰개수</th>
-                    <th style="width: 20%;">토큰가격</th>
-                    <th style="width: 20%;">상태</th>
-                    <th>거래일시</th>
+                    <th style="width: 20%; border-bottom: 1px solid #cccccc;">토큰명</th>
+                    <th style="width: 15%; border-bottom: 1px solid #cccccc;">토큰개수</th>
+                    <th style="width: 20%; border-bottom: 1px solid #cccccc;">토큰가격</th>
+                    <th style="width: 20%; border-bottom: 1px solid #cccccc;">상태</th>
+                    <th style="border-bottom: 1px solid #cccccc;">거래일시</th>
                 </tr>
             </thead>
             {% if transsel %}
@@ -218,10 +258,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <th style="width: 20%;">토큰명</th>
-                    <th style="width: 15%;">토큰개수</th>
-                    <th style="width: 20%;">토큰가격</th>
-                    <th style="width: 20%;">상태</th>
+                    <th style="width: 20%; border-bottom: 1px solid #cccccc;">토큰명</th>
+                    <th style="width: 15%; border-bottom: 1px solid #cccccc;">토큰개수</th>
+                    <th style="width: 20%; border-bottom: 1px solid #cccccc;">토큰가격</th>
+                    <th style="width: 20%; border-bottom: 1px solid #cccccc;">상태</th>
                     <th>거래일시</th>
                 </tr>
             </thead>
@@ -251,11 +291,11 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>구매자</th>
-                        <th>토큰개수</th>
-                        <th>토큰가격</th>
-                        <th>화이트리스트여부</th>
-                        <th>구매승인</th>
+                        <th style="width: 20%; border-bottom: 1px solid #cccccc;">구매자</th>
+                        <th style="width: 20%; border-bottom: 1px solid #cccccc;">토큰수</th>
+                        <th style="width: 20%; border-bottom: 1px solid #cccccc;">토큰가격</th>
+                        <th style="width: 20%; border-bottom: 1px solid #cccccc;">화이트리스트여부</th>
+                        <th style="width: 20%; border-bottom: 1px solid #cccccc;">구매승인</th>
                     </tr>
                 </thead>
                 {% if requlist %}
@@ -306,9 +346,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>토큰명</th>
-                        <th>발행개수</th>
-                        <th>진행상태</th>
+                        <th style="width: 20%; border-bottom: 1px solid #cccccc;">토큰명</th>
+                        <th style="width: 20%; border-bottom: 1px solid #cccccc;">발행개수</th>
+                        <th style="width: 20%; border-bottom: 1px solid #cccccc;">진행상태</th>
 
                     </tr>
                 </thead>
